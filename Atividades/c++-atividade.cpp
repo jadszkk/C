@@ -4,7 +4,7 @@
 using namespace std;
 
 class funcionarios{
-	private:
+    private:
     	float salario, salarionovo, aumentosal;
     	string cargo;
     	string nome;
@@ -15,6 +15,8 @@ class funcionarios{
     	string getcargo() {return cargo;};
     	float getsalario() {return salario;};
     	float getsalarionovo() {return salarionovo;};
+    	funcionarios();
+    	~funcionarios() {cout <<"Funcionário destruído: " << nome << endl;}
 };
 
 void funcionarios::leituradedados(){
@@ -44,6 +46,13 @@ void funcionarios::exibirfuncionarios(){
     cout << "Nome: " << nome << endl << "Cargo: " << cargo << endl << "Salario novo: " << salarionovo << endl << "Salario antigo: " << salario << endl << "Diferença: " << aumentosal << endl;
     cout << endl;
     
+};
+
+funcionarios::funcionarios(){
+    nome = "Indefinido";
+    salario = 0.0;
+    cargo = "Sem cargo";
+    cout << "Funcionário criado com dados padrão.\n";  
 };
 
 int main()
@@ -80,7 +89,7 @@ int main()
     }
     
     cout << "Quantidade de gerentes: " << quantidadeg << endl << "Quantidade de engenheiros: " << quantidadee << endl;
-    cout << "Custo total antes do aumento: " << total << endl << "Custo total depois do aumento: " << totala;
+    cout << "Custo total antes do aumento: " << total << endl << "Custo total depois do aumento: " << totala << endl;
     
     return 0;
 }
