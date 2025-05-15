@@ -3,30 +3,41 @@
 #include <string.h>
 using namespace std;
 
-class funcionarios{
+class pessoa{
+    protected:
+        string nome;
+    public:
+        virtual void leituradedados() {
+            cout<<"Informe o nome: "<<endl;
+            cin >> nome;
+        }
+        virtual void exibirfuncionarios() {
+            cout << "Nome: " << nome << endl;
+        }
+};
+
+class funcionarios : public pessoa{
     private:
     	float salario, salarionovo, aumentosal;
     	string cargo;
-    	string nome;
 	public:
-    	void leituradedados();
+    	void leituradedados() override;
     	void calcularsalario();
-    	void exibirfuncionarios();
-    	string getcargo() {return cargo;};
-    	float getsalario() {return salario;};
-    	float getsalarionovo() {return salarionovo;};
+    	void exibirfuncionarios() override;
+    	string getcargo() {return cargo;}
+    	float getsalario() {return salario;}
+    	float getsalarionovo() {return salarionovo;}
     	funcionarios();
     	~funcionarios() {cout <<"Funcionário destruído: " << nome << endl;}
 };
 
 void funcionarios::leituradedados(){
+    pessoa::leituradedados();
     cout << "Informe o cargo: " << endl;
     cin >> cargo;
     cout << "Informe o salário: " << endl;
     cin >> salario;
-    cout << "Informe o nome: " << endl;
-    cin >> nome;
-};
+}
 
 void funcionarios::calcularsalario(){
     
@@ -38,22 +49,21 @@ void funcionarios::calcularsalario(){
         aumentosal = 0.4*salario;
     }
     salarionovo = salario+aumentosal;
-};
-
+}
 
 void funcionarios::exibirfuncionarios(){
-    
-    cout << "Nome: " << nome << endl << "Cargo: " << cargo << endl << "Salario novo: " << salarionovo << endl << "Salario antigo: " << salario << endl << "Diferença: " << aumentosal << endl;
+    pessoa::exibirfuncionarios();
+    cout << "Cargo: " << cargo << endl << "Salario novo: " << salarionovo << endl << "Salario antigo: " << salario << endl << "Diferença: " << aumentosal << endl;
     cout << endl;
     
-};
+}
 
 funcionarios::funcionarios(){
     nome = "Indefinido";
     salario = 0.0;
     cargo = "Sem cargo";
     cout << "Funcionário criado com dados padrão.\n";  
-};
+}
 
 int main()
 {
